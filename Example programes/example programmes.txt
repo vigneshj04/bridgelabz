@@ -1,0 +1,168 @@
+$ cat addition.sh
+#!/bin/bash
+
+#This is the addition program
+read -p "Enter the number a : " a
+read -p "Enter the number b : " b
+
+c=$(($a+$b));
+
+echo $c;
+
+===========================================
+
+
+$ cat division.sh
+#!/bin/bash
+
+read -p "Enter the number a : " a;
+read -p "Enter the number b : " b;
+
+c=`echo $a $b | awk '{print $1/$2}'`;
+
+echo $a/$b=$c;
+===========================
+
+$ cat ifExample.sh
+#!/bin/bash
+
+read -p "Enter the num 1 : " num1;
+read -p "Enter the num 2 : " num2;
+
+if [ $num1 -gt $num2 ]
+then
+        echo "$num1 is greater";
+else
+        echo "$num2 is greater";
+fi
+
+=================================
+
+
+$ cat caseExample.sh
+#!/bin/bash
+
+for file in `ls -p | grep -v /`
+do
+        ext=`echo $file | awk -F. '{print $2}'`;
+        #echo $ext;
+
+        case $ext in
+                pdf)
+                        echo "$file is PDF document file";
+                ;;
+
+                java)
+                        echo "$file is JAVA program file";
+                ;;
+
+                sh)
+                        echo "$file is shell script program file";
+                ;;
+
+                *)
+                        echo "$file has $ext extension";
+                ;;
+        esac;
+done
+==========================================================
+
+$ cat empDemoWithCase.sh
+#!/bin/bash
+
+PRESENT=1;
+PART_TIME=2;
+
+WAGE_PER_HOUR=20;
+
+isPresent=$((RANDOM%3));
+
+case $isPresent in
+        $PRESENT)
+                echo "Employee is present.";
+                wage=$(($WAGE_PER_HOUR * 8));
+        ;;
+
+        $PART_TIME)
+                echo "Employee is working part time";
+                wage=$(($WAGE_PER_HOUR * 4));
+        ;;
+
+        *)
+                echo "Employee is absent.";
+                wage=0;
+        ;;
+esac;
+
+echo "Employee wage : $"$wage "USD";
+
+==========================================================
+
+$ cat checkEmpAttendance.sh
+#!/bin/bash
+
+PRESENT=1;
+WAGE_PER_HOUR=20;
+
+isPresent=$((RANDOM%2));
+
+if [ $isPresent -eq $PRESENT ]
+then
+        echo "Employee is present.";
+        wage=$(($WAGE_PER_HOUR * 8));
+else
+        echo "Employee is absent.";
+        wage=0;
+fi
+
+echo "Employee wage : $"$wage "USD";
+=============================================================
+
+$ cat cmdLineArgument.sh
+a=$1;
+b=$2;
+
+echo $a $b;
+
+==================================================
+
+$ cat elifExample.sh
+read -p "Emter the num 1 : " num1;
+read -p "Emter the num 2 : " num2;
+
+if [ $num1 -gt $num2 ]
+then
+        echo "$num1 is greater....";
+elif [ $num1 -eq $num2 ]
+then
+        echo "$num1 $num2 are equal....";
+else
+        echo "$num2 is greater....";
+fi
+=====================================================
+
+$ cat partTimeCalculation.sh
+#!/bin/bash
+
+PRESENT=1;
+PART_TIME=2;
+
+WAGE_PER_HOUR=20;
+
+isPresent=$((RANDOM%3));
+
+if [ $isPresent -eq $PRESENT ]
+then
+        echo "Employee is present.";
+        wage=$(($WAGE_PER_HOUR * 8));
+elif [ $isPresent -eq $PART_TIME ]
+then
+        echo "Employee is working part time";
+        wage=$(($WAGE_PER_HOUR * 4));
+else
+        echo "Employee is absent.";
+        wage=0;
+fi
+
+echo "Employee wage : $"$wage "USD";
+======================================================
